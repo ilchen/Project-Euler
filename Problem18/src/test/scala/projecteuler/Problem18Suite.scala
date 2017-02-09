@@ -42,7 +42,7 @@ class Problem18Suite extends FunSuite {
     assert(res == 7273)
   }
 
-  test("Problem18 works with degenerate cases") {
+  test("Problem18 works with for degenerate cases") {
     val (res1, res2) = (Triangle("1") findMaxPathSum, Triangle("1, 2, 3") findMaxPathSum)
     assert(res1 == 1  &&  res2 == 4)
     try {
@@ -50,7 +50,7 @@ class Problem18Suite extends FunSuite {
       fail()
     } catch  {
       case e: IllegalArgumentException => // all well
-      case e: Exception => fail()
+      case _ => fail()
     }
   }
 }
