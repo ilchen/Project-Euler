@@ -18,28 +18,40 @@ class Problem18Suite extends FunSuite {
 
   test("Problem18 works with 15 rows, naive") {
     val triangle = Triangle(prob18Triangle)
-    val res = triangle.findMaxPathSumNaive()
+    val res = triangle.findMaxPathSumNaive
     assert(res == 1074)
   }
 
   test("Problem18 works with 15 rows") {
     val triangle = Triangle(prob18Triangle)
-    val res = triangle.findMaxPathSum()
+    val res = triangle.findMaxPathSum
     assert(res == 1074)
   }
 
   test("Problem18 works with 4 rows") {
     val triangle = Triangle("3, 7, 4, 2, 4, 6, 8, 5, 9, 3")
-    val res = triangle.findMaxPathSum()
+    val res = triangle.findMaxPathSum
     assert(res == 23)
   }
 
   test("Problem67 works") {
     val triangle = Triangle(Source.fromFile(
       "C:\\work\\pe\\Problem18\\tests\\projecteuler\\p067_triangle.txt").getLines().toArray)
-    val res = triangle.findMaxPathSum()
+    val res = triangle.findMaxPathSum
     println(res)
     assert(res == 7273)
+  }
+
+  test("Problem18 works with for degenerate cases") {
+    val (res1, res2) = (Triangle("1") findMaxPathSum, Triangle("1, 2, 3") findMaxPathSum)
+    assert(res1 == 1  &&  res2 == 4)
+    try {
+      Triangle(Array[Int]()).findMaxPathSum
+      fail()
+    } catch  {
+      case e: IllegalArgumentException => // all well
+      case e: Exception => fail()
+    }
   }
 }
 

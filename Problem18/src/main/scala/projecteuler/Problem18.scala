@@ -35,6 +35,7 @@ class Triangle(val root: Node) {
   }
 
 }
+
 object Triangle {
 
   def apply(nodes: Array[Int]): Triangle = {
@@ -42,6 +43,7 @@ object Triangle {
     if (numLines != Math.floor(numLines))
       throw new IllegalArgumentException(s"Cannot make a triangle out of ${nodes.length} elements")
     val n: Int = numLines.asInstanceOf[Int]
+    if (n == 0)  throw new IllegalArgumentException("No numbers to make a triangle out of")
     var (rest, lastRow) = nodes.splitAt(nodes.length - n)
     var accu = lastRow.map(Node(_, null, null))
     for (i <- n-1 to 1 by -1) {
@@ -50,7 +52,6 @@ object Triangle {
       lastRow = l
       val newRow = (0 until i).map(idx => Node(lastRow(idx), accu(idx), accu(idx + 1)))
       accu = newRow.foldRight(accu)((node, a) => node +: a)
-
     }
     println(s"Tree of height $n constructed")
     new Triangle(accu.head)
