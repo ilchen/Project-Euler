@@ -58,7 +58,7 @@ public class Triangle {
     public int  findMaxPathSum() {
         return findMaxPathSumHelper(root, new HashMap<>());
     }
-    private int  findMaxPathSumHelper(Triangle.Node subtree, Map<Triangle.Node, Integer> accu) {
+    private int  findMaxPathSumHelper(Node subtree, Map<Node, Integer> accu) {
         if (!subtree.hasChildren()) {
             return  subtree.val();
         } else if (accu.containsKey(subtree)) {
@@ -87,7 +87,7 @@ public class Triangle {
             } else {
                 int[]   rest = Arrays.copyOfRange(nodesVals, 0, nodesVals.length-n),
                         lastRow = Arrays.copyOfRange(nodesVals, nodesVals.length-n, nodesVals.length);
-                Node[]  lastRowNodes = Arrays.stream(lastRow).mapToObj(val -> new Triangle.Node(val, null, null))
+                Node[]  lastRowNodes = Arrays.stream(lastRow).mapToObj(val -> new Node(val, null, null))
                                         .toArray(Node[]::new);
 
                 for(int i=n-1; i > 0; i--) {
@@ -118,7 +118,6 @@ public class Triangle {
         return  newInstance(stream(lines).flatMap(x -> stream(x.split("\\s+")))
                 .mapToInt(Integer::parseInt).toArray());
     }
-
 
     public static void main(String[] argv) {
         Triangle triangle = newInstance(new int[]{3, 7, 4, 2, 4, 6, 8, 5, 9, 3});
