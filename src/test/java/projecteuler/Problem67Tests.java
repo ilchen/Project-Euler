@@ -56,5 +56,7 @@ class Problem67Tests {
             assertEquals(23, triangle.findMaxPathSum());
             assertEquals(23, triangle.findMaxPathSumNaive());
         }
+        // Incorrect number of elements in the last line must result in an IllegalArgumentException
+        assertThrowsExactly(IllegalArgumentException.class, () -> newInstance("3, 7, 4, 2, 4, 6, 8, 5, 9, 3, 0"));
     }
 }

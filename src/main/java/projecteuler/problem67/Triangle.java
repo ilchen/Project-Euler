@@ -23,8 +23,13 @@ public class Triangle {
             return  left != null;
         }
 
+        /**
+         * Induces an equivalence relation based on two nodes having the same value and the same subtrees
+         * (by object reference). An auto-generated equal does a recursive value comparison traversing the whole tree
+         * and has a computational complexity of O(2<sup>tree-height</sup>), hence the need to override it.
+         */
         @Override
-        public boolean equals(Object obj) {
+        public boolean  equals(Object obj) {
             if (this == obj)  return  true;
             if (!(obj instanceof Node that))  return  false;
             // The same value and the same subtrees implies equivalence
@@ -90,10 +95,10 @@ public class Triangle {
                 Node[]  lastRowNodes = Arrays.stream(lastRow).mapToObj(val -> new Node(val, null, null))
                                         .toArray(Node[]::new);
 
-                for(int i=n-1; i > 0; i--) {
+                for (int i=n-1; i > 0; i--) {
                     lastRow = Arrays.copyOfRange(rest, rest.length - i, rest.length);
                     rest = Arrays.copyOfRange(rest, 0, rest.length - i);
-                    for(int j=0; j < i; j++) {
+                    for (int j=0; j < i; j++) {
                         lastRowNodes[j] = new Node(lastRow[j], lastRowNodes[j], lastRowNodes[j+1]);
                     }
                 }
